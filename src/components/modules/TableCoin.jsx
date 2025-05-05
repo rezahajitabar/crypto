@@ -55,7 +55,7 @@ const TableRow = ({
       </td>
       <td>{name}</td>
       <td>${current_price.toLocaleString()}</td>
-      <td className={price_change > 0 ? styles.success : styles.error}>{price_change.toFixed(2)}%</td>
+      <td className={price_change > 0 ? styles.success : styles.error}> {price_change !== null && price_change !== undefined ? `${price_change.toFixed(2)}%` : "N/A"}%</td>
       <td>{total_volume.toLocaleString()}</td>
       <td>
         <img src={price_change > 0 ? chartup : chartdown} alt="" />

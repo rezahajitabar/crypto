@@ -5,19 +5,37 @@ import Pagination from '../modules/Pagination';
 function HomePage() {
     const [coins,setCoins]=useState([]);
     const [isLoading,setIsLoading]=useState(true);
+    const [error,setError]=useState(false)
+    const [page,setPage]=useState(1);
     useEffect(()=>{
+      setIsLoading(true)
      const fetchData=async()=>{
-      const res=await fetch(getCoinList());
-      const json=await res.json();
-      setCoins(json);
-      setIsLoading(false)
+      try{
+        const res=await fetch(getCoinList({ page }));
+        if(!res.ok){
+          throw new Error(`HTTP Error: ${res.status}`);
+        }
+        const json=await res.json();
+        setCoins(json);
+        setIsLoading(false)
+    }catch(error){
+      setIsLoading(false);
+      setError(error.message)
+    }
+   
      }
      fetchData()
-    },[])
+    },[page])
   return (
     <div>
-      <Pagination/>
-       <TableCoin coins={coins} isLoading={isLoading}/>
+      {error ? (<p className="errorHandling">Error : {error.message}</p>) : (
+        <>
+             <Pagination page={page} setPage={setPage}/>
+             <TableCoin coins={coins} isLoading={isLoading}/>
+        </>
+
+      )}
+ 
     </div>
   )
 }

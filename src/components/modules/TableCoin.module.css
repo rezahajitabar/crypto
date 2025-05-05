@@ -54,6 +54,11 @@
     color: #d33636;
 }
 
+.errorHandling{
+    font-size: 2rem;
+    color: #d33636;
+}
+
 @media (max-width:600px) {
     .table {
         display: block;
