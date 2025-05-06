@@ -12,24 +12,24 @@ function Pagination({page,setPage}) {
         setPage((page)=> page + 1)
     }
   return (
-    <div>
-    <button onClick={previousHandler}>Previous</button>
+    <div className={styles.pagination}>
+    <button onClick={previousHandler} className={page === 1 ? styles.disabled : null}>Previous</button>
 
-    <button onClick={() => goToPage(1)} style={{ color: page === 1 ? "red" : "black" }}>1</button>
-    <button onClick={() => goToPage(2)} style={{ color: page === 2 ? "red" : "black" }}>2</button>
+    <p className={page === 1 ? styles.selected : null}>1</p>
+    <p className={page === 2 ? styles.selected : null}>2</p>
 
     {page > 3 && <span>...</span>}
 
     {page > 2 && page < 9 && (
-      <button style={{ color: "red" }}>{page}</button>
+      <p className={styles.selected}>{page}</p>
     )}
 
     {page < 8 && <span>...</span>}
 
-    <button onClick={() => goToPage(9)} style={{ color: page === 9 ? "red" : "black" }}>9</button>
-    <button onClick={() => goToPage(10)} style={{ color: page === 10 ? "red" : "black" }}>10</button>
+    <p className={page === 9 ? styles.selected : null}>9</p>
+    <p className={page === 10 ? styles.selected : null}>10</p>
 
-    <button onClick={nextHandler}>Next</button>
+    <button className={page === 10 ? styles.disabled : null} onClick={nextHandler}>Next</button>
   </div>
   )
 }
