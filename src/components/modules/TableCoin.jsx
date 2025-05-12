@@ -3,7 +3,7 @@ import { RotatingLines } from "react-loader-spinner";
 import chartup from "../../assets/chart-up.svg";
 import chartdown from "../../assets/chart-down.svg";
 import styles from "../modules/TableCoin.module.css";
-function TableCoin({ coins, isLoading,currency }) {
+function TableCoin({ coins, isLoading,currency,setChart }) {
   console.log(coins);
 
   return (
@@ -24,7 +24,7 @@ function TableCoin({ coins, isLoading,currency }) {
           </thead>
           <tbody>
             {coins.map((coin) => (
-                <TableRow coin={coin} key={coin.id}  currency={currency}/>
+                <TableRow coin={coin} key={coin.id}  currency={currency} setChart={setChart}/>
             ))}
           </tbody>
         </table>
@@ -44,12 +44,16 @@ const TableRow = ({
     total_volume,
     price_change_percentage_24h: price_change,
   },
-  currency
+  currency,
+  setChart
 }) => {
+  const showChart=()=>{
+    setChart(true);
+  }
   return (
     <tr>
       <td>
-        <div className={styles.symbol}>
+        <div className={styles.symbol} onClick={showChart}>
           <img src={image} alt={name} />
           <span>{symbol.toUpperCase()}</span>
         </div>
