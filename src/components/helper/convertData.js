@@ -5,7 +5,9 @@ const convertData=(data,type)=>{
         day: "2-digit",
         month: "short",
         year: "numeric",
-    })
+    });
+    
+    
     return{
         date:formatDate,
         [type]:item[1]
