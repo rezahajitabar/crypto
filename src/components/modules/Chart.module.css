@@ -56,7 +56,7 @@
     margin-top: 30px;
 }
 
-.types button{
+.typesButton{
     margin: 10px 20px;
     background-color: #18181cdb;
     border: 1px solid #3874ff;
@@ -67,7 +67,7 @@
     cursor: pointer;
 }
 
-.types .selected{
+.selected{
     background-color: #3874ff;
     color: #fff;
 }

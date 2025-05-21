@@ -1,12 +1,15 @@
 import { useState } from 'react'
 import './global.css'
 import HomePage from './components/templates/HomePage'
+import Layout from './layouts/Layout'
 function App() {
 
   return (
     <>
-       <h1>Crypto App</h1>
-       <HomePage/>
+    <Layout>
+    <HomePage/>
+    </Layout>
+  
     </>
   )
 }

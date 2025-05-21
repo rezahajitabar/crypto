@@ -15,6 +15,10 @@ function Chart({ chart, setChart }) {
   const [type, setType] = useState("prices");
   console.log(convertData(chart, type));
 
+  const typeHandler=(event)=>{
+    setType(event.target.innerText)
+  }
+
   return (
     <div className={styles.container}>
       <span className={styles.cross} onClick={() => setChart(null)}>
@@ -28,13 +32,13 @@ function Chart({ chart, setChart }) {
         <div className={styles.graph}>
           <ChartComponent data={convertData(chart, type)} type={type} />
         </div>
-        <div className={styles.types}>
-          <button onClick={(e) => setType(e.target.innerText)}>prices</button>
-          <button onClick={(e) => setType(e.target.innerText)}>
+        <div onClick={typeHandler} className={styles.types}>
+          <button className={`${styles.typesButton} ${type === "prices" ? styles.selected : ""}`}>prices</button>
+          <button className={`${styles.typesButton} ${type === "market_caps" ? styles.selected : ""}`}>
             market_caps
           </button>
-          <button onClick={(e) => setType(e.target.innerText)}>
-            total_volume
+          <button className={`${styles.typesButton} ${type === "total_volumes" ? styles.selected : ""}`}>
+            total_volumes
           </button>
         </div>
         <div className={styles.details}>
